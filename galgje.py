@@ -1,13 +1,14 @@
 import random
 
-#Ik heb een functie kies_woord() gemaakt die een willekeurig woord kiest uit een lijst met woorden.
-#De functie gebruikt random.choice() om een woord te selecteren
+# Functie om een willekeurig woord te kiezen uit een tekstbestand
 def kies_woord():
-    woorden = ['appel', 'banaan', 'computer', 'python', 'kat', 'hond']
+    with open("woorden.txt", "r") as bestand:
+        woorden = bestand.readlines()
+    # Verwijder eventuele extra witruimtes of newline tekens
+    woorden = [woord.strip() for woord in woorden]
     return random.choice(woorden)
 
-#geraden is een lijst die de voortgang bijhoudt. Aan het begin zijn alle letters nog verborgen (aangegeven door _).
-#verkeerd_geraden is een lijst die de verkeerde gokjes opslaat
+# Functie voor het starten van het galgje spel
 def start_galgje():
     woord = kies_woord()
     geraden = ['_'] * len(woord)
@@ -49,7 +50,3 @@ def start_galgje():
 
 if __name__ == "__main__":
     start_galgje()
-
-
-
-# Start het spel
